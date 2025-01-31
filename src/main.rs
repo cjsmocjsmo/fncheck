@@ -1,7 +1,6 @@
 // use std::env;
 use std::path::Path;
 use walkdir::WalkDir;
-use id3::Tag;
 
 // pub mod utils;
 
@@ -52,7 +51,7 @@ fn main() {
             println!("File name: {:?}", mp3);
         }
         
-        let _ck = check_cd_tag(mp3.to_string());
+        
         
     }
     
@@ -182,18 +181,3 @@ fn remove_parentheses_and_contents(input: &str) -> String {
     re.replace_all(input, "").to_string()
 }
 
-pub fn check_cd_tag(apath: String) {
-    let file_parts = split_path(&apath).unwrap();
-    let dir_path = file_parts.0;
-    let filename = file_parts.1;
-
-    let cdfn = filename.chars().next().unwrap_or_default();
-
-    let tag = Tag::read_from_path(&apath).unwrap();
-
-    for frame in tag.frames() {
-        println!("ID: {}", frame.id());
-        println!("Value: {}", frame.content());
-        println!("--------------------");
-    }
-}
