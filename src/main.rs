@@ -52,9 +52,10 @@ fn main() {
             println!("File name: {:?}", mp3);
         }
         
-        
+        let _ck = check_cd_tag(mp3.to_string());
         
     }
+    
     println!("Matched re: {:?}", remat);
     println!("Matched re2: {:?}", re2mat);
     println!("Matched re3: {:?}", re3mat);
