@@ -20,20 +20,20 @@ fn main() {
 
     let mp3_files = find_media(&dir_path);
     let mut totalcount = 0;
-    let mut badcount = 0;
+    // let mut badcount = 0;
 
     for mp3 in &mp3_files {
         totalcount += 1;
 
         // let _ = clean_filename(mp3.to_string());
         
-        let check = check_file_name_format(mp3.to_string());
-        if !check {
-            // println!("Filename format is incorrect:\n\t {:?}", mp3);
-            badcount += 1;
-        }
+        let _check = check_file_name_format(mp3.to_string());
+        // if !check {
+        //     // println!("Filename format is incorrect:\n\t {:?}", mp3);
+        //     badcount += 1;
+        // }
     }
-    println!("\n\nFound {} files formatted incorrectly.", badcount);
+    // println!("\n\nFound {} files formatted incorrectly.", badcount);
     println!("Scanned {} media files.", totalcount);
 }
 
@@ -88,7 +88,7 @@ pub fn rename_file(oldpath: String, newpath: String) {
     }
 }
 
-pub fn check_file_name_format(apath: String) -> bool {
+pub fn check_file_name_format(apath: String) {
     let file_parts = split_path(&apath).unwrap();
     let file_name = file_parts.1;
     let file_name = remove_parentheses_and_contents(&file_name);
@@ -115,26 +115,26 @@ pub fn check_file_name_format(apath: String) -> bool {
     if re.is_match(&file_name) {
         remat += 1;
         // println!("Matched re: {:?}", file_name);
-        return true;
+        
     } else if re2.is_match(&file_name) {
         re2mat += 1;
-        return true;
+        
     } else if re3.is_match(&file_name) {
         re3mat += 1;
-        return true;
+        
     } else if re4.is_match(&file_name) {
         re4mat += 1;
-        return true;
+        
     } else if re5.is_match(&file_name) {
         re5mat += 1;
         println!("Matched re5: {:?}", file_name);
-        return true;
+        
     } else if re6.is_match(&file_name) {
         re6mat += 1;
         println!("Matched re6: {:?}", file_name);
-        return true;
+        
     } else {
-        return false;
+        println!("fuck: {:?}", file_name);
     }
 
     println!("Matched re: {:?}", remat);
