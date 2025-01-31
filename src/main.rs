@@ -31,7 +31,7 @@ fn main() {
     for mp3 in &mp3_files {
         totalcount += 1;
 
-        // let _ = clean_filename(mp3.to_string());
+        let _ = clean_filename(mp3.to_string());
         
         let check = check_file_name_format(mp3.to_string());
         if check == "re" {
