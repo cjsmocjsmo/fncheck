@@ -20,6 +20,12 @@ fn main() {
 
     let mp3_files = find_media(&dir_path);
     let mut totalcount = 0;
+    let mut remat = 0;
+    let mut re2mat = 0;
+    let mut re3mat = 0;
+    let mut re4mat = 0;
+    let mut re5mat = 0;
+    let mut re6mat = 0;
     // let mut badcount = 0;
 
     for mp3 in &mp3_files {
@@ -27,12 +33,33 @@ fn main() {
 
         // let _ = clean_filename(mp3.to_string());
         
-        let _check = check_file_name_format(mp3.to_string());
-        // if !check {
-        //     // println!("Filename format is incorrect:\n\t {:?}", mp3);
-        //     badcount += 1;
-        // }
+        let check = check_file_name_format(mp3.to_string());
+        if check == "re" {
+            remat += 1;
+        } else if check == "re2" {
+            re2mat += 1;
+        } else if check == "re3" {
+            re3mat += 1;
+        } else if check == "re4" {
+            re4mat += 1;
+        } else if check == "re5" {
+            re5mat += 1;
+        } else if check == "re6" {
+            re6mat += 1;
+        } else {
+            // badcount += 1;
+            println!("File name: {:?}", mp3);
+        }
+        
+        
+        
     }
+    println!("Matched re: {:?}", remat);
+    println!("Matched re2: {:?}", re2mat);
+    println!("Matched re3: {:?}", re3mat);
+    println!("Matched re4: {:?}", re4mat);
+    println!("Matched re5: {:?}", re5mat);
+    println!("Matched re6: {:?}", re6mat);
     // println!("\n\nFound {} files formatted incorrectly.", badcount);
     println!("Scanned {} media files.", totalcount);
 }
@@ -88,7 +115,7 @@ pub fn rename_file(oldpath: String, newpath: String) {
     }
 }
 
-pub fn check_file_name_format(apath: String) {
+pub fn check_file_name_format(apath: String) -> String {
     let file_parts = split_path(&apath).unwrap();
     let file_name = file_parts.1;
     let file_name = remove_parentheses_and_contents(&file_name);
@@ -105,44 +132,28 @@ pub fn check_file_name_format(apath: String) {
     //     .to_str()
     //     .unwrap();+
 
-    let mut remat = 0;
-    let mut re2mat = 0;
-    let mut re3mat = 0;
-    let mut re4mat = 0;
-    let mut re5mat = 0;
-    let mut re6mat = 0;
-
     if re.is_match(&file_name) {
-        remat += 1;
+        return "re".to_string();
         // println!("Matched re: {:?}", file_name);
         
     } else if re2.is_match(&file_name) {
-        re2mat += 1;
+        return "re2".to_string();
         
     } else if re3.is_match(&file_name) {
-        re3mat += 1;
+        return "re3".to_string();
         
     } else if re4.is_match(&file_name) {
-        re4mat += 1;
+        return "re4".to_string();
         
     } else if re5.is_match(&file_name) {
-        re5mat += 1;
-        println!("Matched re5: {:?}", file_name);
+        return "re5".to_string();
         
     } else if re6.is_match(&file_name) {
-        re6mat += 1;
-        println!("Matched re6: {:?}", file_name);
+        return "re6".to_string();
         
     } else {
-        println!("fuck: {:?}", file_name);
+        return "fuck".to_string();
     }
-
-    println!("Matched re: {:?}", remat);
-    println!("Matched re2: {:?}", re2mat);
-    println!("Matched re3: {:?}", re3mat);
-    println!("Matched re4: {:?}", re4mat);
-    println!("Matched re5: {:?}", re5mat);
-    println!("Matched re6: {:?}", re6mat);
 }
 
 fn split_path(path_str: &str) -> Option<(String, String)> {
