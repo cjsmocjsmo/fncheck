@@ -122,10 +122,10 @@ pub fn check_file_name_format(apath: String) -> String {
     // println!("File name: {:?}", file_name);
     let re = regex::Regex::new(r"\d_\d{2}_-_.+_-_.+_-_.+\.mp3").unwrap();
     let re2 = regex::Regex::new(r"\d{2}_-_.+_-_.+_-_.+\.flac").unwrap();
-    let re3 = regex::Regex::new(r"\d_d{2}_-_.+_-_.+_-_.+\.ogg").unwrap();
-    let re4 = regex::Regex::new(r"\d_d{2}_-_.+_-_.+_-_.+\.wav").unwrap();
+    let re3 = regex::Regex::new(r"\d{2}_-_.+_-_.+_-_.+\.ogg").unwrap();
+    let re4 = regex::Regex::new(r"\d{2}_-_.+_-_.+_-_.+\.wav").unwrap();
     let re5 = regex::Regex::new(r"^\d{2}\.\s[1-9A-Za-z\s]+\s-\s[1-9A-Za-z\s]+\.mp3$").unwrap();
-    let re6 = regex::Regex::new(r"^\d_\d{2}_\-\_[1-9A-Za-z\s]+_\-\_[1-9A-Za-z\s]+\-\_[1-9A-Za-z\s]+\.mp3$").unwrap();
+    let re6 = regex::Regex::new(r"\d_\d{2}_-_.+_-_.+\.mp3").unwrap();
     // let file_name = Path::new(&apath)
     //     .file_name()
     //     .unwrap()
