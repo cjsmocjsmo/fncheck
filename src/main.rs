@@ -94,7 +94,7 @@ pub fn check_file_name_format(apath: String) -> bool {
     let file_name = remove_parentheses_and_contents(&file_name);
     // println!("File name: {:?}", file_name);
     let re = regex::Regex::new(r"\d_\d{2}_-_.+_-_.+_-_.+\.mp3").unwrap();
-    let re2 = regex::Regex::new(r"\d_d{2}_-_.+_-_.+_-_.+\.flac").unwrap();
+    let re2 = regex::Regex::new(r"\d{2}_-_.+_-_.+_-_.+\.flac").unwrap();
     let re3 = regex::Regex::new(r"\d_d{2}_-_.+_-_.+_-_.+\.ogg").unwrap();
     let re4 = regex::Regex::new(r"\d_d{2}_-_.+_-_.+_-_.+\.wav").unwrap();
     let re5 = regex::Regex::new(r"^\d{2}\.\s[1-9A-Za-z\s]+\s-\s[1-9A-Za-z\s]+\.mp3$").unwrap();
@@ -105,24 +105,44 @@ pub fn check_file_name_format(apath: String) -> bool {
     //     .to_str()
     //     .unwrap();+
 
+    let mut remat = 0;
+    let mut re2mat = 0;
+    let mut re3mat = 0;
+    let mut re4mat = 0;
+    let mut re5mat = 0;
+    let mut re6mat = 0;
+
     if re.is_match(&file_name) {
-        println!("Matched re: {:?}", file_name);
+        remat += 1;
+        // println!("Matched re: {:?}", file_name);
         return true;
     } else if re2.is_match(&file_name) {
+        re2mat += 1;
         return true;
     } else if re3.is_match(&file_name) {
+        re3mat += 1;
         return true;
     } else if re4.is_match(&file_name) {
+        re4mat += 1;
         return true;
     } else if re5.is_match(&file_name) {
+        re5mat += 1;
         println!("Matched re5: {:?}", file_name);
         return true;
     } else if re6.is_match(&file_name) {
+        re6mat += 1;
         println!("Matched re6: {:?}", file_name);
         return true;
     } else {
         return false;
     }
+
+    println!("Matched re: {:?}", remat);
+    println!("Matched re2: {:?}", re2mat);
+    println!("Matched re3: {:?}", re3mat);
+    println!("Matched re4: {:?}", re4mat);
+    println!("Matched re5: {:?}", re5mat);
+    println!("Matched re6: {:?}", re6mat);
 }
 
 fn split_path(path_str: &str) -> Option<(String, String)> {
